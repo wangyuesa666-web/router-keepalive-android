@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Tab highlight + press ripple for the floating dock.
+
+  The dock is a 32dp pill, so a rectangular press highlight (which is what
+  `?attr/selectableItemBackground` gives) visibly overflows the pill's rounded ends — the highlight
+  looks square inside a round container. This drawable clips the ripple to the same 32dp radius as
+  `bg_dock`, and adds the "selected" wash the ArkUI dock uses.
+
+  Two states, matching the ArkUI dock:
+    - selected: a translucent accent wash, so the active tab reads as a lens over the pill;
+    - pressed:  a stronger accent wash, clipped to the pill.
+-->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/dock_tab_ripple">
+    <item>
+        <selector>
+            <item android:state_selected="true">
+                <shape android:shape="rectangle">
+                    <corners android:radius="@dimen/dock_radius" />
+                    <solid android:color="@color/dock_tab_selected" />
+                </shape>
+            </item>
+            <item>
+                <shape android:shape="rectangle">
+                    <corners android:radius="@dimen/dock_radius" />
+                    <solid android:color="@android:color/transparent" />
+                </shape>
+            </item>
+        </selector>
+    </item>
+</ripple>

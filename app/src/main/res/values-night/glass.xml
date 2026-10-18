@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Glass material colours for dark theme, mirroring values/glass.xml.
+
+  The HarmonyOS dark palette's accent is #BDA5F2 (189,165,242), so the dock's selected wash and
+  ripple use that instead of the light theme's #176149. The sheen is also lowered: a #38FFFFFF
+  highlight would wash the dark glass out, whereas a tinted, dimmer one reads as light grazing the
+  surface without killing the palette.
+-->
+<resources>
+    <color name="glass_sheen_top">#24FFFFFF</color>
+    <color name="glass_sheen_mid">#0AFFFFFF</color>
+    <color name="glass_sheen_rim">#FF51445D</color>
+
+    <!--
+      Dock tab states, dark theme: the dark accent (#BDA5F2) at the same alphas as the light theme,
+      so the selected tab is equally legible in both.
+
+      The alphas were measured, not guessed. The dark glass composites to #34293F over the #31273D
+      page, so a 30% accent wash lands on #55476A — clearly a purple lens. Anything under ~20% is
+      indistinguishable from the unselected tab, which is exactly the "you can't tell which tab is
+      active" failure the previous value produced.
+    -->
+    <color name="dock_tab_selected">#66BDA5F2</color>
+    <color name="dock_tab_ripple">#80BDA5F2</color>
+</resources>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  App shell, 1:1 with the HarmonyOS page structure:
+  - FrameLayout root with the 180deg page gradient (pageTop -> pageBottom)
+  - a scrolling content area
+  - a "liquid glass" sticky header pinned to the top, translucent card colour, hairline
+    bottom border and rounded bottom corners, holding title + subtitle + master switch
+  - a FLOATING bottom dock (not a full-width navigation bar) with two tabs
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_page_gradient"
+    android:fitsSystemWindows="false"
+    tools:context=".MainActivity">
+
+    <!--
+      Each tab Fragment owns its own scrolling container, so the nav host must NOT be wrapped in a
+      ScrollView: doing that would also wrap the diagnostics detail page and give it a second,
+      duplicated top offset on top of its own safe-area padding.
+    -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph" />
+
+    <!-- Liquid glass header: the ArkUI LiquidHeader. -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_glass_header"
+        android:elevation="@dimen/header_elevation"
+        android:gravity="center_vertical"
+        android:minHeight="@dimen/header_height"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/header_padding_horizontal"
+        android:paddingTop="@dimen/header_padding_top"
+        android:paddingBottom="@dimen/header_padding_bottom">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/header_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0"
+                android:maxLines="1"
+                android:text="@string/app_name"
+                android:textAppearance="?attr/textAppearanceHeadlineMedium"
+                android:textStyle="bold"
+                android:textColor="?attr/colorOnSurface" />
+
+            <TextView
+                android:id="@+id/header_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/keepalive_off_subtitle"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?attr/colorOnSurfaceVariant" />
+        </LinearLayout>
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/switch_master"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/master_switch_desc"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            app:thumbTint="@color/switch_thumb"
+            app:trackTint="@color/switch_track" />
+    </LinearLayout>
+
+    <!-- Floating dock: the ArkUI barFloatingStyle dock. -->
+    <LinearLayout
+        android:id="@+id/dock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginHorizontal="@dimen/dock_margin"
+        android:layout_marginBottom="@dimen/dock_margin"
+        android:background="@drawable/bg_dock"
+        android:elevation="@dimen/dock_elevation"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tab_keep_alive"
+            style="@style/Widget.RouterKeepAlive.DockTab"
+            android:layout_width="@dimen/dock_tab_width"
+            android:layout_height="@dimen/dock_tab_height"
+            android:background="@drawable/bg_dock_tab"
+            android:gravity="center"
+            android:text="@string/tab_keep_alive"
+            android:textColor="@color/dock_tab_text" />
+
+        <TextView
+            android:id="@+id/tab_settings"
+            style="@style/Widget.RouterKeepAlive.DockTab"
+            android:layout_width="@dimen/dock_tab_width"
+            android:layout_height="@dimen/dock_tab_height"
+            android:background="@drawable/bg_dock_tab"
+            android:gravity="center"
+            android:text="@string/tab_settings"
+            android:textColor="@color/dock_tab_text" />
+    </LinearLayout>
+</FrameLayout>

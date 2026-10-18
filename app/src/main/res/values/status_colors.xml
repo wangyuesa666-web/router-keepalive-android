@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Light: a soft tint of the status colour. -->
+    <color name="status_chip_background">#1A176149</color>
+    <color name="status_chip_text">#176149</color>
+</resources>

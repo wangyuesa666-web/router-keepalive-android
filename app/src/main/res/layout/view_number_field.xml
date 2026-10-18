@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  NumberFieldRow, 1:1 with the ArkUI components/NumberFieldRow.ets:
+      Row() {
+          Column({ space: 2 }) { Text(label) 15sp Medium; Text(hint) 12sp secondaryText }
+              .alignItems(HorizontalAlign.Start).layoutWeight(1)
+          TextInput(Number).width(92).borderRadius(14)
+              .backgroundColor(controlSurface).border(controlBorder|controlFocus)
+      }.width('100%').padding({ top: 7, bottom: 7 })
+
+  No minHeight: the ArkUI row is only as tall as its content plus 14dp. The input is exactly
+  92dp wide per the ArkUI `.width(92)`.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingTop="7dp"
+    android:paddingBottom="7dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/label"
+            style="@style/Widget.RouterKeepAlive.SectionLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
+            tools:text="探测间隔" />
+
+        <TextView
+            android:id="@+id/hint"
+            style="@style/Widget.RouterKeepAlive.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/text_secondary"
+            tools:text="15–900 秒；低于 60 秒会增加功耗" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/value"
+        style="@style/Widget.RouterKeepAlive.NumberField" />
+</LinearLayout>

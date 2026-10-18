@@ -1,0 +1,19 @@
+# Android build outputs
+build/
+.gradle/
+local.properties
+
+# IDE
+.idea/
+*.iml
+captures/
+
+# Signing material — never commit a keystore or its password file.
+*.jks
+*.keystore
+keystore.properties
+signing.properties
+
+# Release artifacts belong in a GitHub Release, not in git history.
+*.apk
+*.aab

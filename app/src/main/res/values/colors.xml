@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      Exact HarmonyOS RouterTheme LIGHT_PALETTE values, used verbatim.
+      pageTop #F9FBF9, pageBottom #E7F2ED, card #EAF9FCFA, inset #EAF3F9F5,
+      border #BFD2E5DA, primaryText #173A30, secondaryText #4C685E, accent #176149,
+      actionSurface #E6176149, dockLight #176149, controlSurface #F7FFFFFF,
+      controlBorder #8FAFC9BA, controlFocus #176149, onAccent #FFFFFFFF,
+      warning #94621C, danger #A64955
+    -->
+    <color name="page_top">#F9FBF9</color>
+    <color name="page_bottom">#E7F2ED</color>
+    <color name="glass_card">#EAF9FCFA</color>
+    <color name="glass_inset">#EAF3F9F5</color>
+    <color name="glass_border">#BFD2E5DA</color>
+    <color name="text_primary">#173A30</color>
+    <color name="text_secondary">#4C685E</color>
+    <color name="accent">#176149</color>
+    <color name="action_surface">#E6176149</color>
+    <color name="dock_light">#176149</color>
+    <color name="control_surface">#F7FFFFFF</color>
+    <color name="control_border">#8FAFC9BA</color>
+    <color name="control_focus">#176149</color>
+    <color name="on_accent">#FFFFFFFF</color>
+    <color name="warning">#94621C</color>
+    <color name="danger">#A64955</color>
+
+    <!-- Material theme roles mapped onto the HarmonyOS palette. -->
+    <color name="md_light_primary">#176149</color>
+    <color name="md_light_on_primary">#FFFFFFFF</color>
+    <color name="md_light_primary_container">#EAF3F9F5</color>
+    <color name="md_light_on_primary_container">#173A30</color>
+    <color name="md_light_secondary">#4C685E</color>
+    <color name="md_light_on_secondary">#FFFFFFFF</color>
+    <color name="md_light_secondary_container">#EAF3F9F5</color>
+    <color name="md_light_on_secondary_container">#173A30</color>
+
+    <color name="md_light_background">#F9FBF9</color>
+    <color name="md_light_on_background">#173A30</color>
+    <color name="md_light_surface">#F9FBF9</color>
+    <color name="md_light_on_surface">#173A30</color>
+    <color name="md_light_surface_variant">#E7F2ED</color>
+    <color name="md_light_on_surface_variant">#4C685E</color>
+    <color name="md_light_surface_container">#EAF9FCFA</color>
+    <color name="md_light_surface_container_high">#EAF3F9F5</color>
+    <color name="md_light_surface_container_highest">#E7F2ED</color>
+    <color name="md_light_outline">#BFD2E5DA</color>
+    <color name="md_light_outline_variant">#D8E5E0</color>
+
+    <color name="md_light_error">#A64955</color>
+    <color name="md_light_on_error">#FFFFFFFF</color>
+    <color name="md_light_error_container">#F7DDE0</color>
+    <color name="md_light_on_error_container">#4A151D</color>
+
+    <!-- Status colours, from the ArkUI statusColor() logic. -->
+    <color name="status_running">#176149</color>
+    <color name="status_waiting">#4C685E</color>
+    <color name="status_warning">#94621C</color>
+    <color name="status_danger">#A64955</color>
+    <color name="status_off">#4C685E</color>
+
+    <!-- ArkUI Toggle: accent-coloured track with a light thumb in both states. -->
+    <color name="switch_thumb_on">#FFFFFFFF</color>
+    <color name="switch_thumb_off">#FFFFFFFF</color>
+    <color name="switch_track_off">#8FAFC9BA</color>
+
+    <!--
+      The night palette is declared here too so values-night/colors.xml always has a default to
+      fall back on (lint MissingDefaultResource); the night file only overrides the values.
+    -->
+    <color name="md_dark_primary">#BDA5F2</color>
+    <color name="md_dark_on_primary">#17131D</color>
+    <color name="md_dark_primary_container">#3A2C4F</color>
+    <color name="md_dark_on_primary_container">#EBDFFF</color>
+    <color name="md_dark_secondary">#C4B9CD</color>
+    <color name="md_dark_on_secondary">#2A2233</color>
+    <color name="md_dark_secondary_container">#3B3346</color>
+    <color name="md_dark_on_secondary_container">#F4EFF7</color>
+    <color name="md_dark_background">#17131D</color>
+    <color name="md_dark_on_background">#F4EFF7</color>
+    <color name="md_dark_surface">#17131D</color>
+    <color name="md_dark_on_surface">#F4EFF7</color>
+    <color name="md_dark_surface_variant">#241B2D</color>
+    <color name="md_dark_on_surface_variant">#C4B9CD</color>
+    <color name="md_dark_surface_container">#D934293F</color>
+    <color name="md_dark_surface_container_high">#D9292231</color>
+    <color name="md_dark_surface_container_highest">#241B2D</color>
+    <color name="md_dark_outline">#6251445D</color>
+    <color name="md_dark_outline_variant">#4A3D55</color>
+    <color name="md_dark_error">#D88E97</color>
+    <color name="md_dark_on_error">#3A1218</color>
+    <color name="md_dark_error_container">#4A2029</color>
+    <color name="md_dark_on_error_container">#FFD9DD</color>
+
+    <color name="scrim">#6617131D</color></resources>

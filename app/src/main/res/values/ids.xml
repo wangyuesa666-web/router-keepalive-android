@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="metric_status" type="id" />
+    <item name="metric_wifi" type="id" />
+    <item name="metric_last_success" type="id" />
+    <item name="metric_failures" type="id" />
+</resources>

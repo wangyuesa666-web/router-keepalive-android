@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Text styles with the EXACT ArkUI font sizes from pages/Index.ets and components/*.ets.
+  Material's text appearance roles do not match (HeadlineSmall is 24sp where the ArkUI status
+  Text is 23sp, TitleLarge is 22sp where a card title is 20sp, BodyMedium is 14sp where the body
+  copy is 13sp), and those 1-2sp deltas accumulate into the "everything is slightly too big and
+  slightly too tight" look. Every size below is copied from the ArkUI builder it maps to.
+-->
+<resources>
+
+    <!-- Text(line).fontSize(23).fontWeight(Bold).fontColor(statusColor()) -->
+    <style name="TextAppearance.RouterKeepAlive.Status" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:textSize">23sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <!-- Text('基础设置').fontSize(20).fontWeight(Bold) and the same for every card title -->
+    <style name="TextAppearance.RouterKeepAlive.CardTitle" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <!-- Text('运行范围').fontSize(15).fontWeight(Medium) -->
+    <style name="TextAppearance.RouterKeepAlive.SectionLabel" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <!-- Text(...).fontSize(14) in MetricRow -->
+    <style name="TextAppearance.RouterKeepAlive.Metric" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <!-- Text(...).fontSize(13) — GuidanceCard body, "后台运行检查" copy -->
+    <style name="TextAppearance.RouterKeepAlive.Body" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textSize">13sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <!-- Text(...).fontSize(12) — privacy caption, alert hint, NumberFieldRow hint -->
+    <style name="TextAppearance.RouterKeepAlive.Caption" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <!-- NumberFieldRow label: fontSize(15).fontWeight(Medium) -->
+    <style name="TextAppearance.RouterKeepAlive.FieldLabel" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <!-- Diagnostics detail line: Text(line).fontSize(14) -->
+    <style name="TextAppearance.RouterKeepAlive.DiagnosticLine" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <!-- DockTab label: Text(label).fontSize(14) -->
+    <style name="TextAppearance.RouterKeepAlive.DockTab" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <!-- DiagnosticsDetail heading: Text('诊断记录').fontSize(28).fontWeight(Bold) -->
+    <style name="TextAppearance.RouterKeepAlive.PageHeading" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+</resources>

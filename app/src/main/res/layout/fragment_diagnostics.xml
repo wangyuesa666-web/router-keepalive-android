@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Diagnostics detail, 1:1 with the ArkUI DiagnosticsDetail builder (2026-10-09 build):
+
+      Column()
+        .padding({ top: contentInset(safeTop, 16), left: ..., right: ... })
+        Scroll()
+          Row().justifyContent(Center)
+            Column({ space: 14 }).constraintSize({ maxWidth: 1240 })
+                                        .padding({ bottom: safeBottom + 24 })
+              Row({ space: 12 })
+                Button('返回').height(48).backgroundColor(glassInset()).fontColor(primaryText)
+                  .border({ width: 1, color: glassBorder() })
+                Text('诊断记录').fontSize(28).fontWeight(Bold).layoutWeight(1)
+              Column({ space: 10 }).padding(18).backgroundColor(glass())
+                .border({ width: 1, color: glassBorder() }).borderRadius(24)
+                Text('仅保存时间、结果类别和耗时；不记录 URL、账号、密码或响应正文。').fontSize(13)
+                Column({ space: 7 }).padding(14).backgroundColor(glassInset()).borderRadius(16)
+                  ForEach(lines) { Text(line).fontSize(14) }
+                Row({ space: 10 })
+                  Button('复制记录').layoutWeight(1).height(48)
+                  Button('清空记录').layoutWeight(1).height(48).backgroundColor(danger())
+
+  Two Android specifics:
+  - the page padding is applied in code (DiagnosticsFragment) because the ArkUI version folds the
+    safe-area inset into it with `contentInset(safeTop, 16)`;
+  - the record list is a RecyclerView so the 100-record window is recycled. It fills a weighted
+    FrameLayout inside the card, which is what keeps the copy/clear row pinned at the bottom
+    instead of being pushed off-screen by a long list.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detail_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_page_gradient"
+    android:orientation="vertical">
+
+    <!-- Row({ space: 12 }): back button + heading -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_back"
+            style="@style/Widget.RouterKeepAlive.Button.Tonal"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/control_height"
+            android:minWidth="@dimen/control_height"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="@string/back" />
+
+        <TextView
+            android:id="@+id/text_heading"
+            style="@style/TextAppearance.RouterKeepAlive.PageHeading"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/diagnostics_title"
+            android:textColor="@color/text_primary" />
+    </LinearLayout>
+
+    <!-- The glass card: privacy note, the record list, then the two actions. -->
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.RouterKeepAlive.Card"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="14dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            style="@style/Widget.RouterKeepAlive.CardContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/Widget.RouterKeepAlive.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/diagnostics_privacy"
+                android:textColor="@color/text_secondary" />
+
+            <!-- Column({ space: 7 }).padding(14).backgroundColor(glassInset()).borderRadius(16) -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_inset_large"
+                android:padding="@dimen/inset_padding_large">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_diagnostics"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:scrollbars="vertical"
+                    tools:itemCount="6"
+                    tools:listitem="@layout/item_diagnostic" />
+
+                <TextView
+                    android:id="@+id/text_empty"
+                    style="@style/TextAppearance.RouterKeepAlive.DiagnosticLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/diagnostics_empty_detail"
+                    android:textColor="@color/text_secondary"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+            </FrameLayout>
+
+            <!-- Row({ space: 10 }) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_copy"
+                    style="@style/Widget.RouterKeepAlive.Button"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/copy_records" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_clear"
+                    style="@style/Widget.RouterKeepAlive.Button.Danger"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:text="@string/clear_records" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>

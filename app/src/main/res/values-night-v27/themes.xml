@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- windowLightNavigationBar requires API 27; declare it only there. -->
+    <style name="Theme.RouterKeepAlive" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+</resources>

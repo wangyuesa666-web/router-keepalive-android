@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      Dimensions, 1:1 with the ArkUI builders.
+      Card: padding 18, radius 24, border 1.
+      Control: height 48 (Button) / 44 (ThemeChooser), radius 16.
+      Inset: padding 10 (preview) / 14 (detail), radius 12 / 16.
+      Dock: 112x52 tabs, 32dp pill radius, 16dp side margin.
+      Header: surfaceHeight(keepAlive, 0, wide=false, safeTop=0) = 88.
+    -->
+    <dimen name="card_radius">24dp</dimen>
+    <dimen name="card_padding">18dp</dimen>
+    <dimen name="card_stroke">1dp</dimen>
+
+    <dimen name="control_radius">16dp</dimen>
+    <dimen name="control_height">48dp</dimen>
+    <dimen name="button_radius">24dp</dimen>
+    <!-- ArkUI's default single-line control height: both Select and TextInput render at 40vp. -->
+    <dimen name="control_field_height">40dp</dimen>
+    <!-- ArkUI NumberFieldRow: TextInput().width(92). -->
+    <dimen name="number_field_width">92dp</dimen>
+
+    <dimen name="theme_button_height">44dp</dimen>
+    <dimen name="theme_button_radius">22dp</dimen>
+
+    <dimen name="inset_radius">12dp</dimen>
+    <dimen name="inset_padding">10dp</dimen>
+    <dimen name="inset_radius_large">16dp</dimen>
+    <dimen name="inset_padding_large">14dp</dimen>
+
+    <dimen name="screen_padding">16dp</dimen>
+    <dimen name="card_spacing">14dp</dimen>
+    <dimen name="field_spacing">8dp</dimen>
+    <dimen name="row_min_height">40dp</dimen>
+    <dimen name="icon_size">20dp</dimen>
+
+    <!-- Header: the ArkUI LiquidHeader surface. Elevation stays at 0 because the ArkUI header
+         separates itself with glass() + a hairline border rather than a shadow. -->
+    <dimen name="header_height">88dp</dimen>
+    <dimen name="header_padding_horizontal">18dp</dimen>
+    <dimen name="header_padding_top">12dp</dimen>
+    <dimen name="header_padding_bottom">16dp</dimen>
+    <dimen name="header_elevation">0dp</dimen>
+
+    <!-- Dock: the ArkUI barFloatingStyle bar, 112x52 tabs. -->
+    <dimen name="dock_radius">32dp</dimen>
+    <dimen name="dock_margin">16dp</dimen>
+    <dimen name="dock_tab_width">112dp</dimen>
+    <dimen name="dock_tab_height">52dp</dimen>
+    <dimen name="dock_elevation">0dp</dimen>
+</resources>

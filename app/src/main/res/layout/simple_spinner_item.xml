@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Spinner selected-value view. The Spinner itself already carries the 14dp start padding from
+  Widget.RouterKeepAlive.Select, so this view must NOT add its own: it only sets the text
+  appearance. That keeps the selected value on the same 14dp inset as the sibling EditText.
+-->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ellipsize="end"
+    android:gravity="center_vertical"
+    android:letterSpacing="0"
+    android:singleLine="true"
+    android:textColor="@color/text_primary"
+    android:textSize="14sp"
+    tools:text="仅目标 Wi-Fi" />

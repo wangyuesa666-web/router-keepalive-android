@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      Light theme. The colour values are the HarmonyOS palette (RouterTheme LIGHT_PALETTE) mapped
+      onto Material 3 colour roles, so the two platforms stay visually identical while every
+      Material component (FAB, ripple, snackbar, text fields) themes itself correctly.
+    -->
+    <style name="Theme.RouterKeepAlive" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Brand -->
+        <item name="colorPrimary">@color/md_light_primary</item>
+        <item name="colorOnPrimary">@color/md_light_on_primary</item>
+        <item name="colorPrimaryContainer">@color/md_light_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/md_light_on_primary_container</item>
+        <item name="colorSecondary">@color/md_light_secondary</item>
+        <item name="colorOnSecondary">@color/md_light_on_secondary</item>
+        <item name="colorSecondaryContainer">@color/md_light_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/md_light_on_secondary_container</item>
+
+        <!-- Surfaces -->
+        <item name="android:colorBackground">@color/md_light_background</item>
+        <item name="colorOnBackground">@color/md_light_on_background</item>
+        <item name="colorSurface">@color/md_light_surface</item>
+        <item name="colorOnSurface">@color/md_light_on_surface</item>
+        <item name="colorSurfaceVariant">@color/md_light_surface_variant</item>
+        <item name="colorOnSurfaceVariant">@color/md_light_on_surface_variant</item>
+        <item name="colorSurfaceContainer">@color/md_light_surface_container</item>
+        <item name="colorSurfaceContainerHigh">@color/md_light_surface_container_high</item>
+        <item name="colorSurfaceContainerHighest">@color/md_light_surface_container_highest</item>
+        <item name="colorOutline">@color/md_light_outline</item>
+        <item name="colorOutlineVariant">@color/md_light_outline_variant</item>
+
+        <!-- Status semantics -->
+        <item name="colorError">@color/md_light_error</item>
+        <item name="colorOnError">@color/md_light_on_error</item>
+        <item name="colorErrorContainer">@color/md_light_error_container</item>
+        <item name="colorOnErrorContainer">@color/md_light_on_error_container</item>
+
+        <!-- System bars: transparent + light icons, matching the Harmony immersive mode -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- windowLightNavigationBar lives in values-v27 (API 27+). -->
+        <item name="android:windowBackground">@color/md_light_background</item>
+    </style>
+</resources>

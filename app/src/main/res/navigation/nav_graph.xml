@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/keepAliveFragment">
+
+    <fragment
+        android:id="@+id/keepAliveFragment"
+        android:name="com.fft.routerkeepalive.ui.KeepAliveFragment"
+        android:label="@string/tab_keep_alive" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.fft.routerkeepalive.ui.SettingsFragment"
+        android:label="@string/tab_settings" />
+
+    <fragment
+        android:id="@+id/diagnosticsFragment"
+        android:name="com.fft.routerkeepalive.ui.DiagnosticsFragment"
+        android:label="@string/diagnostics_title" />
+</navigation>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Glass material colours that are not part of the HarmonyOS palette itself.
+
+  The ArkUI design is a real `backgroundEffect` blur, so it never needs to pick a highlight colour —
+  the light simply comes from whatever is behind the surface. On Android a plain View cannot sample
+  what is behind it, so the light has to be painted, and the paint has to be a colour the design
+  system can adjust per theme:
+    - `glass_sheen_top`   the specular highlight along the top edge of a surface;
+    - `glass_sheen_mid`   the centre of the falloff;
+    - `glass_sheen_rim`   the bevelled rim, brighter than the flat border it replaces.
+  White at a low alpha reads as "light reflecting off glass" in light mode; in dark mode the same
+  white would wash the palette out, so it is tinted toward the accent instead (see values-night).
+-->
+<resources>
+    <color name="glass_sheen_top">#38FFFFFF</color>
+    <color name="glass_sheen_mid">#0DFFFFFF</color>
+    <color name="glass_sheen_rim">#FFEFF9F5</color>
+
+    <!--
+      Dock tab states, light theme.
+
+      The selected wash is the accent at low alpha so the active tab reads as a lens over the glass
+      rather than a solid block; the ripple is the same accent, stronger. The alphas were chosen by
+      compositing rather than by eye: at 14% the wash lands on #DAE5E2 against the glass's #FAFBFB
+      and is effectively invisible, at 30% it gives #B5CCC5 (a tinted lens, still not a solid block),
+      and 40% gives #A9C6BE — clearly selected without turning the pill into a filled button.
+
+      These must be theme-aware: a single hard-coded light-theme value composites to a dull
+      grey-purple over the dark glass, which is what made the selected tab look dirty in dark mode.
+    -->
+    <color name="dock_tab_selected">#66176149</color>
+    <color name="dock_tab_ripple">#80176149</color>
+</resources>

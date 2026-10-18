@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  iOS-style "liquid glass" surface: a translucent fill with a soft top-down sheen and a hairline rim
+  that is brighter at the top.
+
+  A real backdrop blur is not reachable for a plain View on Android (RenderEffect only blurs the
+  view's own drawing, and `backgroundEffect` is an ArkUI-only API), so the glass look is built from
+  what is actually renderable:
+    - a low-alpha fill so the page gradient reads through;
+    - a vertical gradient overlay that is bright at the top and fades out, which is the "specular"
+      highlight that gives glass its sense of thickness;
+    - a 1dp rim whose paint fades from bright to dim, which is what iOS uses instead of a flat border.
+  The result holds up against any background because it never relies on sampling one.
+
+  The sheen colours are resources (see values/glass.xml and values-night/glass.xml) rather than
+  hard-coded white, because the same white at the same alpha reads as "light on glass" in light mode
+  but washes the palette out in dark mode.
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Base fill: the card colour at reduced opacity so the gradient beneath tints it. -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/card_radius" />
+            <solid android:color="@color/glass_card" />
+        </shape>
+    </item>
+
+    <!-- Sheen: light fading from the top edge downward. -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/card_radius" />
+            <gradient
+                android:angle="270"
+                android:endColor="#00000000"
+                android:centerColor="@color/glass_sheen_mid"
+                android:startColor="@color/glass_sheen_top"
+                android:type="linear" />
+        </shape>
+    </item>
+
+    <!-- Rim: bright at the top, dimming toward the bottom, like a bevelled glass edge. -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/card_radius" />
+            <stroke
+                android:width="1dp"
+                android:color="@color/glass_sheen_rim" />
+        </shape>
+    </item>
+</layer-list>

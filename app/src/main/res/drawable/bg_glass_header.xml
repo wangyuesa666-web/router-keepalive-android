@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The ArkUI LiquidHeader surface (2026-10-09 final build): glass() colour, hairline bottom border in
+  glassBorder(), square corners (bottomRadius() returns 0).
+
+  ArkUI achieves this with `backgroundEffect()`, which blurs whatever scrolls behind the header and
+  therefore always looks like a solid frosted panel. Android has no equivalent for a plain View (a
+  RenderEffect only blurs the view's own drawing), so a translucent fill would let the text scrolling
+  underneath show through and overlap the title. The fill is therefore the glass colour composited
+  over the page gradient's top stop, giving the same frosted appearance with a stable, opaque result.
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/page_top" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/glass_card" />
+        </shape>
+    </item>
+    <item android:bottom="0dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/glass_border" />
+            <size android:height="1dp" />
+        </shape>
+    </item>
+</layer-list>

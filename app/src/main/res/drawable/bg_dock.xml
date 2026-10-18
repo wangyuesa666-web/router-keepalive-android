@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The floating dock as a piece of liquid glass.
+
+  Built the same way as `bg_glass_card` — translucent fill, a top-down sheen, a rim — but with the
+  pill radius and a brighter highlight, because the dock receives the most "light" in the design and
+  is the element users look at while switching tabs. iOS floating bars get their materiality from
+  three things, all reproduced here:
+    1. a body that is translucent but still lifts the content off the page;
+    2. a specular highlight along the top edge that reads as reflected light;
+    3. a rim that is brighter at the top than the bottom, so the edge looks bevelled rather than drawn.
+
+  The highlight is brighter than on a card because the dock is the smallest surface: a small object
+  in the same light field catches proportionally more of it.
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/dock_radius" />
+            <solid android:color="@color/glass_card" />
+        </shape>
+    </item>
+
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/dock_radius" />
+            <gradient
+                android:angle="270"
+                android:endColor="#00000000"
+                android:centerColor="@color/glass_sheen_mid"
+                android:startColor="@color/glass_sheen_top"
+                android:type="linear" />
+        </shape>
+    </item>
+
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/dock_radius" />
+            <stroke
+                android:width="1dp"
+                android:color="@color/glass_sheen_rim" />
+        </shape>
+    </item>
+</layer-list>

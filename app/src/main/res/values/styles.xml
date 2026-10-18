@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+      Widget + text styles, all sized from the ArkUI builders rather than Material defaults.
+
+      Two classes of drift are corrected here:
+      1. Font sizes. Material's roles do not match the ArkUI values (HeadlineSmall is 24sp vs the
+         ArkUI status 23sp, TitleLarge 22sp vs a 20sp card title, BodyMedium 14sp vs 13sp body
+         copy). The exact sizes live in values/type.xml.
+      2. Box insets. MaterialCardView adds a 4dp compat inset and MaterialButton adds its own
+         insetTop/insetBottom plus an elevation state animator, all of which shift a label
+         relative to the ArkUI box it is supposed to sit centred in. They are zeroed below.
+    -->
+
+    <!-- Text styles: thin aliases onto the exact ArkUI sizes in type.xml. -->
+    <style name="Widget.RouterKeepAlive.CardTitle" parent="TextAppearance.RouterKeepAlive.CardTitle" />
+    <style name="Widget.RouterKeepAlive.SectionLabel" parent="TextAppearance.RouterKeepAlive.SectionLabel" />
+    <style name="Widget.RouterKeepAlive.Metric" parent="TextAppearance.RouterKeepAlive.Metric" />
+    <style name="Widget.RouterKeepAlive.Body" parent="TextAppearance.RouterKeepAlive.Body" />
+    <style name="Widget.RouterKeepAlive.Caption" parent="TextAppearance.RouterKeepAlive.Caption" />
+    <style name="Widget.RouterKeepAlive.Warning" parent="TextAppearance.RouterKeepAlive.Caption">
+        <item name="android:textColor">@color/warning</item>
+    </style>
+    <style name="Widget.RouterKeepAlive.DockTab" parent="TextAppearance.RouterKeepAlive.DockTab" />
+    <style name="Widget.RouterKeepAlive.Status" parent="TextAppearance.RouterKeepAlive.Status" />
+
+    <!--
+      ArkUI card: Column().width('100%').padding(18).backgroundColor(glass())
+      .border({width:1, color:glassBorder()}).borderRadius(24)
+
+      The 18dp padding is ArkUI's INNER padding, so it must NOT be set as the CardView's own View
+      padding: MaterialCardView insets its background by the View padding, which shrinks the card
+      and pushes it away from the page margin. The inner content LinearLayout carries it instead
+      (see Widget.RouterKeepAlive.CardContent).
+
+      The fill is a flat `cardBackgroundColor`, NOT a drawable: MaterialCardView paints its own
+      MaterialShapeDrawable and ignores `android:background` entirely, so a layered glass drawable
+      set that way is silently dropped and the card falls back to the theme's default surface
+      (#FEF7FF in the light theme), which is the off-palette pink-white you can see bleeding around
+      the cards. The glass sheen is applied separately, in code, as an overlay view — see
+      `GlassSheen.applyTo`.
+    -->
+    <style name="Widget.RouterKeepAlive.Card" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/glass_card</item>
+        <item name="cardCornerRadius">@dimen/card_radius</item>
+        <item name="cardElevation">0dp</item>
+        <item name="cardMaxElevation">0dp</item>
+        <item name="strokeColor">@color/glass_border</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="rippleColor">@color/accent</item>
+        <item name="checkedIcon">@null</item>
+        <item name="cardPreventCornerOverlap">false</item>
+        <item name="cardUseCompatPadding">false</item>
+    </style>
+
+    <!-- The inner Column of an ArkUI card: padding(18). -->
+    <style name="Widget.RouterKeepAlive.CardContent" parent="">
+        <item name="android:padding">@dimen/card_padding</item>
+    </style>
+
+    <!--
+      ArkUI Button: Button('x').width('100%').height(48).backgroundColor(actionSurface())
+      .border({width:1, color:accent()}).fontColor(onAccent)
+    -->
+    <style name="Widget.RouterKeepAlive.Button" parent="Widget.Material3.Button">
+        <item name="android:layout_height">@dimen/control_height</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="cornerRadius">@dimen/button_radius</item>
+        <item name="backgroundTint">@color/action_surface</item>
+        <item name="android:textColor">@color/on_accent</item>
+        <item name="strokeColor">@color/accent</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="rippleColor">@color/accent</item>
+        <item name="elevation">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <!-- Same box, quieter fill: controlSurface + controlBorder + primaryText. -->
+    <style name="Widget.RouterKeepAlive.Button.Tonal" parent="Widget.Material3.Button">
+        <item name="android:layout_height">@dimen/control_height</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="cornerRadius">@dimen/button_radius</item>
+        <item name="backgroundTint">@color/control_surface</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="strokeColor">@color/control_border</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="rippleColor">@color/accent</item>
+        <item name="elevation">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <!-- ArkUI '恢复默认参数': same box as Tonal. -->
+    <style name="Widget.RouterKeepAlive.Button.Outlined" parent="Widget.RouterKeepAlive.Button.Tonal" />
+
+    <!-- ArkUI '清空记录': danger fill, no border. -->
+    <style name="Widget.RouterKeepAlive.Button.Danger" parent="Widget.Material3.Button">
+        <item name="android:layout_height">@dimen/control_height</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="cornerRadius">@dimen/button_radius</item>
+        <item name="backgroundTint">@color/danger</item>
+        <item name="android:textColor">@color/on_accent</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="rippleColor">@color/accent</item>
+        <item name="elevation">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <!-- ArkUI ThemeChooser button: Button('x').layoutWeight(1).height(44). -->
+    <style name="Widget.RouterKeepAlive.ThemeButton" parent="Widget.Material3.Button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/theme_button_height</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="cornerRadius">@dimen/theme_button_radius</item>
+        <item name="strokeColor">@color/theme_button_stroke</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="android:textColor">@color/theme_button_text</item>
+        <item name="backgroundTint">@color/theme_button_background</item>
+        <item name="rippleColor">@color/accent</item>
+        <item name="elevation">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <!-- ArkUI .glassInset(): rounded translucent panel. -->
+    <style name="Widget.RouterKeepAlive.Inset" parent="">
+        <item name="android:background">@drawable/bg_inset</item>
+        <item name="android:padding">@dimen/inset_padding</item>
+    </style>
+
+    <!--
+      ArkUI TextInput / Select: 16dp radius, controlSurface fill, controlBorder stroke that turns
+      controlFocus on focus, placeholder in secondaryText. A plain EditText style rather than a
+      TextInputLayout, because ArkUI keeps the placeholder visible instead of floating it.
+
+      Both this and the Select below use the SAME 10dp vertical padding so the two controls render
+      at the same height, which is what ArkUI does implicitly (both default to a 40vp control
+      height). Different heights are what made the fields look mis-aligned.
+    -->
+    <style name="Widget.RouterKeepAlive.TextField" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_height">@dimen/control_field_height</item>
+        <item name="android:background">@drawable/bg_control</item>
+        <item name="android:paddingStart">14dp</item>
+        <item name="android:paddingEnd">14dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColorHint">@color/text_secondary</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:maxLines">1</item>
+        <!-- A URL is longer than the box; let the field scroll horizontally so the whole value can
+             be inspected, instead of clipping the tail with no way to reach it. -->
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:ellipsize">none</item>
+    </style>
+
+    <!--
+      NumberFieldRow input: ArkUI `TextInput().width(92)` with no explicit height, so it renders at
+      the same default 40vp control height as the other fields. An explicit height is set here
+      because relying on padding alone produced a 36dp box: EditText's font metrics and the
+      background drawable do not add up to the same total as the single-line fields above.
+    -->
+    <style name="Widget.RouterKeepAlive.NumberField" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">@dimen/number_field_width</item>
+        <item name="android:layout_height">@dimen/control_field_height</item>
+        <item name="android:background">@drawable/bg_control_small</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:inputType">number</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <!-- ArkUI Select: same control box as TextField, same 14dp text inset. -->
+    <style name="Widget.RouterKeepAlive.Select" parent="Widget.AppCompat.Spinner">
+        <item name="android:layout_height">@dimen/control_field_height</item>
+        <item name="android:background">@drawable/bg_control</item>
+        <item name="android:paddingStart">14dp</item>
+        <item name="android:paddingEnd">14dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:popupBackground">@color/glass_card</item>
+    </style>
+
+    <!-- ArkUI Toggle switch. -->
+    <style name="Widget.RouterKeepAlive.Switch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="thumbTint">@color/switch_thumb</item>
+        <item name="trackTint">@color/switch_track</item>
+    </style>
+
+    <!-- Diagnostics detail toolbar. -->
+    <style name="Widget.RouterKeepAlive.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="titleTextAppearance">@style/TextAppearance.RouterKeepAlive.PageHeading</item>
+        <item name="titleTextColor">@color/text_primary</item>
+        <item name="navigationIconTint">@color/text_primary</item>
+        <item name="android:background">@color/glass_card</item>
+    </style>
+
+</resources>

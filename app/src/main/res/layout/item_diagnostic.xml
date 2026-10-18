@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  One diagnostics row, 1:1 with the ArkUI ForEach body:
+      Text(line).fontSize(12 | 14).fontColor(primaryText).width('100%')
+  where `line` is the whole "HH:mm:ss · CATEGORY · 123 ms" string produced by formatRecordLine().
+  It is a single left-aligned Text, not a three-column row that spreads the fields to the edges.
+  The preview list uses 12sp, the detail page 14sp.
+-->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/text_line"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:letterSpacing="0"
+    android:textColor="@color/text_primary"
+    android:textSize="12sp"
+    tools:text="08:05:03 · SUCCESS · 218 ms" />

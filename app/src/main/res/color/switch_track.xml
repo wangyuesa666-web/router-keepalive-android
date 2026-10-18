@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ArkUI Toggle track: selectedColor(accent()) when on; when off the ArkUI switch track is a
+  muted tone, approximated with the controlBorder colour.
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" android:color="@color/accent" />
+    <item android:color="@color/control_border" />
+</selector>

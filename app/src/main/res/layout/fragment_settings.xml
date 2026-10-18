@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Settings tab, 1:1 with the ArkUI SettingsContent (2026-10-09 build).
+
+  Spacing: every card is an ArkUI `Column({ space: N })`, reproduced here as a marginTop on the
+  child that follows (LinearLayout has no `space` equivalent). BasicCard uses 9, AdvancedCard 10,
+  ThemeChooser 7, GuidanceCard 8. No minHeight is set on any field: the ArkUI TextInput sizes to
+  its content plus its own padding, and the ArkUI NumberFieldRow is a Row with 12dp of vertical
+  padding around a 92dp-wide input.
+-->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tab_scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:id="@+id/column_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="120dp">
+
+        <!-- BasicCard: Column({ space: 9 }) -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.RouterKeepAlive.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                style="@style/Widget.RouterKeepAlive.CardContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Widget.RouterKeepAlive.CardTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/card_basic"
+                    android:textColor="@color/text_primary" />
+
+                <!-- Text('运行范围').fontSize(15).fontWeight(Medium) -->
+                <TextView
+                    style="@style/Widget.RouterKeepAlive.SectionLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:text="@string/label_scope"
+                    android:textColor="@color/text_primary" />
+
+                <!-- ArkUI Select().width('100%').borderRadius(16).backgroundColor(controlSurface()) -->
+                <Spinner
+                    android:id="@+id/spinner_scope"
+                    style="@style/Widget.RouterKeepAlive.Select"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="9dp"
+                    tools:listitem="@layout/simple_spinner_item" />
+
+                <!-- ArkUI TextInput({ placeholder }).borderRadius(16) -->
+                <EditText
+                    android:id="@+id/input_ssids"
+                    style="@style/Widget.RouterKeepAlive.TextField"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="9dp"
+                    android:hint="@string/label_target_ssids"
+                    android:inputType="text" />
+
+                <!-- NumberFieldRow: 探测间隔 -->
+                <include
+                    android:id="@+id/row_interval"
+                    layout="@layout/view_number_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp" />
+
+                <!-- Button('保存基础设置').height(48) -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_save_basic"
+                    style="@style/Widget.RouterKeepAlive.Button"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="9dp"
+                    android:text="@string/action_save_basic" />
+
+                <!-- Validation errors only. A successful save stays silent: the fields already
+                     show the new values, and a Snackbar here covered the dock. -->
+                <TextView
+                    android:id="@+id/text_save_message"
+                    style="@style/Widget.RouterKeepAlive.Caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/danger"
+                    android:visibility="gone"
+                    tools:text="探测间隔需在 15–900 秒之间"
+                    tools:visibility="visible" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- AdvancedCard: Column({ space: 10 }) -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.RouterKeepAlive.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/card_spacing">
+
+            <LinearLayout
+                style="@style/Widget.RouterKeepAlive.CardContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Header row: Text('高级设置') + Text('展开'/'收起').fontColor(accent()).padding(12) -->
+                <LinearLayout
+                    android:id="@+id/advanced_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/Widget.RouterKeepAlive.CardTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/card_advanced"
+                        android:textColor="@color/text_primary" />
+
+                    <TextView
+                        android:id="@+id/text_advanced_toggle"
+                        style="@style/Widget.RouterKeepAlive.SectionLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="12dp"
+                        android:text="@string/expand"
+                        android:textColor="@color/accent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/advanced_body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <!-- ThemeChooser: Column({ space: 7 }) -->
+                    <TextView
+                        style="@style/Widget.RouterKeepAlive.SectionLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/label_appearance"
+                        android:textColor="@color/text_primary" />
+
+                    <com.google.android.material.button.MaterialButtonToggleGroup
+                        android:id="@+id/toggle_theme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        app:selectionRequired="true"
+                        app:singleSelection="true">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/button_theme_system"
+                            style="@style/Widget.RouterKeepAlive.ThemeButton"
+                            android:text="@string/theme_system" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/button_theme_light"
+                            style="@style/Widget.RouterKeepAlive.ThemeButton"
+                            android:text="@string/theme_light" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/button_theme_dark"
+                            style="@style/Widget.RouterKeepAlive.ThemeButton"
+                            android:text="@string/theme_dark" />
+                    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                    <EditText
+                        android:id="@+id/input_primary_url"
+                        style="@style/Widget.RouterKeepAlive.TextField"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:hint="@string/label_primary_url"
+                        android:inputType="textUri" />
+
+                    <EditText
+                        android:id="@+id/input_fallback_url"
+                        style="@style/Widget.RouterKeepAlive.TextField"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:hint="@string/label_fallback_url"
+                        android:inputType="textUri" />
+
+                    <!-- NumberFieldRow: 超时 -->
+                    <include
+                        android:id="@+id/row_timeout"
+                        layout="@layout/view_number_field"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp" />
+
+                    <!-- NumberFieldRow: 每轮尝试次数 -->
+                    <include
+                        android:id="@+id/row_retry"
+                        layout="@layout/view_number_field"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp" />
+
+                    <!-- Row{Text('异常通知'); Toggle}.height(48) -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/Widget.RouterKeepAlive.SectionLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/label_notify_on_failure"
+                            android:textColor="@color/text_primary" />
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/switch_notify"
+                            style="@style/Widget.RouterKeepAlive.Switch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="0dp"
+                            android:minHeight="0dp" />
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/button_save_advanced"
+                        style="@style/Widget.RouterKeepAlive.Button"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/action_save_advanced" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/button_restore_defaults"
+                        style="@style/Widget.RouterKeepAlive.Button.Tonal"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/action_restore_defaults" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      Exact HarmonyOS RouterTheme DARK_PALETTE values, used verbatim.
+      pageTop #17131D, pageBottom #241B2D, card #D934293F, inset #D9292231,
+      border #6251445D, primaryText #F4EFF7, secondaryText #C4B9CD, accent #BDA5F2,
+      actionSurface #E6BDA5F2, dockLight #BDA5F2, controlSurface #E61E1827,
+      controlBorder #8A756782, controlFocus #BDA5F2, onAccent #17131D,
+      warning #E4B16D, danger #D88E97
+    -->
+    <color name="page_top">#17131D</color>
+    <color name="page_bottom">#241B2D</color>
+    <color name="glass_card">#D934293F</color>
+    <color name="glass_inset">#D9292231</color>
+    <color name="glass_border">#6251445D</color>
+    <color name="text_primary">#F4EFF7</color>
+    <color name="text_secondary">#C4B9CD</color>
+    <color name="accent">#BDA5F2</color>
+    <color name="action_surface">#E6BDA5F2</color>
+    <color name="dock_light">#BDA5F2</color>
+    <color name="control_surface">#E61E1827</color>
+    <color name="control_border">#8A756782</color>
+    <color name="control_focus">#BDA5F2</color>
+    <color name="on_accent">#17131D</color>
+    <color name="warning">#E4B16D</color>
+    <color name="danger">#D88E97</color>
+
+    <color name="md_dark_primary">#BDA5F2</color>
+    <color name="md_dark_on_primary">#17131D</color>
+    <color name="md_dark_primary_container">#3A2C4F</color>
+    <color name="md_dark_on_primary_container">#EBDFFF</color>
+    <color name="md_dark_secondary">#C4B9CD</color>
+    <color name="md_dark_on_secondary">#2A2233</color>
+    <color name="md_dark_secondary_container">#3B3346</color>
+    <color name="md_dark_on_secondary_container">#F4EFF7</color>
+
+    <color name="md_dark_background">#17131D</color>
+    <color name="md_dark_on_background">#F4EFF7</color>
+    <color name="md_dark_surface">#17131D</color>
+    <color name="md_dark_on_surface">#F4EFF7</color>
+    <color name="md_dark_surface_variant">#241B2D</color>
+    <color name="md_dark_on_surface_variant">#C4B9CD</color>
+    <color name="md_dark_surface_container">#D934293F</color>
+    <color name="md_dark_surface_container_high">#D9292231</color>
+    <color name="md_dark_surface_container_highest">#241B2D</color>
+    <color name="md_dark_outline">#6251445D</color>
+    <color name="md_dark_outline_variant">#4A3D55</color>
+
+    <color name="md_dark_error">#D88E97</color>
+    <color name="md_dark_on_error">#3A1218</color>
+    <color name="md_dark_error_container">#4A2029</color>
+    <color name="md_dark_on_error_container">#FFD9DD</color>
+
+    <color name="status_running">#BDA5F2</color>
+    <color name="status_waiting">#C4B9CD</color>
+    <color name="status_warning">#E4B16D</color>
+    <color name="status_danger">#D88E97</color>
+    <color name="status_off">#C4B9CD</color>
+
+    <!-- ArkUI Toggle in the dark palette: accent track, dark thumb to match onAccent(). -->
+    <color name="switch_thumb_on">#17131D</color>
+    <color name="switch_thumb_off">#F4EFF7</color>
+    <color name="switch_track_off">#8A756782</color>
+</resources>

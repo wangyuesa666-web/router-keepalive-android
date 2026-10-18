@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ArkUI Toggle thumb: the ArkUI switch is an accent-coloured track with a white thumb, so the
+  thumb stays at the surface colour in both states. The accent colour belongs on the track.
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" android:color="@color/switch_thumb_on" />
+    <item android:color="@color/switch_thumb_off" />
+</selector>
